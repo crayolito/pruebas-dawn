@@ -24,46 +24,43 @@
 {%- endif -%}
 
 {%- style -%}
-      #Banner-{{ section.id }}::after {
-        opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
-      }
-      .stars-container {
+        #Banner-{{ section.id }}::after {
+          opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+        }
+
+        .banner__rating {
+    margin-bottom: 1rem;
+  }
+
+  .stars-container {
     display: inline-flex;
     align-items: center;
-    position: relative;
+    gap: 8px;
   }
 
   .stars-outer {
     position: relative;
     display: inline-block;
-    font-size: 24px;
-    line-height: 1;
   }
 
   .stars-outer::before {
-    content: "★★★★★";
+    content: "☆☆☆☆☆";
+    font-size: 24px;
     color: #ccc;
-    letter-spacing: 3px;
   }
 
   .stars-inner {
     position: absolute;
     top: 0;
     left: 0;
-    white-space: nowrap;
     overflow: hidden;
     width: 0;
   }
 
   .stars-inner::before {
     content: "★★★★★";
+    font-size: 24px;
     color: #FFD700;
-    letter-spacing: 3px;
-  }
-
-  .rating-number {
-    margin-left: 10px;
-    font-size: 18px;
   }
 {%- endstyle -%}
 
@@ -90,24 +87,43 @@
 -%}
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  function initializeRating() {
     const rating = 4.3;
     const starTotal = 5;
 
+    // Calcular el porcentaje para las estrellas
     const starPercentage = (rating / starTotal) * 100;
     const starPercentageRounded = `${Math.round(starPercentage)}%`;
 
+    // Encontrar los elementos
     const starsInner = document.querySelector('.stars-inner');
     const ratingNumber = document.querySelector('.rating-number');
 
     if (starsInner) {
+      // Asegurarse que el elemento tenga display
+      starsInner.style.display = 'block';
+      // Establecer el ancho
       starsInner.style.width = starPercentageRounded;
+      console.log('Ancho establecido:', starPercentageRounded);
+    } else {
+      console.error('No se encontró el elemento stars-inner');
     }
 
+    // Actualizar el número
     if (ratingNumber) {
       ratingNumber.textContent = rating.toFixed(1);
     }
-  });
+  }
+
+  // Ejecutar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeRating);
+  } else {
+    initializeRating();
+  }
+
+  // Ejecutar después de un breve retraso como respaldo
+  setTimeout(initializeRating, 500);
 </script>
 
 <div
