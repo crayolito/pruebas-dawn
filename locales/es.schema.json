@@ -2236,6 +2236,9 @@
           },
           "options__2": {
             "label": "Centrado"
+          },
+          "options__3": {
+            "label": "Derecha"
           }
         },
         "background_style": {
