@@ -2874,7 +2874,7 @@
             },
             "subheading": {
               "label": "Subtítulo",
-              "default": "Cuenta la historia de tu marca a través de imágenes"
+              "default": "<p>Cuenta la historia de tu marca a través de imágenes</p>"
             },
             "button_label": {
               "label": "Etiqueta de botón",
