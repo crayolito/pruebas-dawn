@@ -24,30 +24,33 @@
 {%- endif -%}
 
 {%- style -%}
-          #Banner-{{ section.id }}::after {
-            opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
-          }
+            #Banner-{{ section.id }}::after {
+              opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+            }
 
-          .banner__rating {
+            .banner__rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     margin-bottom: 1rem;
   }
 
   .stars-container {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
   }
 
   .stars-outer {
     position: relative;
     display: inline-block;
-    width: 120px; /* Ancho fijo para contener exactamente 5 estrellas */
+    width: 120px; /* Ancho fijo para 5 estrellas */
   }
 
   .stars-outer::before {
     content: "☆☆☆☆☆";
     font-size: 24px;
     color: #ccc;
+    letter-spacing: 0;
     position: absolute;
     left: 0;
   }
@@ -65,11 +68,15 @@
     content: "★★★★★";
     font-size: 24px;
     color: #FFD700;
+    letter-spacing: 0;
   }
 
   .rating-number {
     font-size: 18px;
+    line-height: 1;
     margin-left: 8px;
+    vertical-align: middle;
+    display: inline-block;
   }
 {%- endstyle -%}
 
@@ -96,43 +103,39 @@
 -%}
 
 <script>
-  function initializeRating() {
-    const rating = 4.3;
-    const starTotal = 5;
+  document.addEventListener('DOMContentLoaded', function () {
+    function initializeRating() {
+      const rating = 4.3;
+      const starTotal = 5;
 
-    // Calcular el porcentaje para las estrellas
-    const starPercentage = (rating / starTotal) * 100;
-    const starPercentageRounded = `${Math.round(starPercentage)}%`;
+      // Calcular el porcentaje exacto
+      const starPercentage = (rating / starTotal) * 100;
 
-    // Encontrar los elementos
-    const starsInner = document.querySelector('.stars-inner');
-    const ratingNumber = document.querySelector('.rating-number');
+      // No redondeamos el porcentaje para mantener la precisión
+      const starWidth = `${starPercentage}%`;
 
-    if (starsInner) {
-      // Asegurarse que el elemento tenga display
-      starsInner.style.display = 'block';
-      // Establecer el ancho
-      starsInner.style.width = starPercentageRounded;
-      console.log('Ancho establecido:', starPercentageRounded);
-    } else {
-      console.error('No se encontró el elemento stars-inner');
+      const starsInner = document.querySelector('.stars-inner');
+      const ratingNumber = document.querySelector('.rating-number');
+
+      if (starsInner) {
+        starsInner.style.width = starWidth;
+        console.log('Width set to:', starWidth);
+      }
+
+      if (ratingNumber) {
+        ratingNumber.textContent = rating.toFixed(1);
+      }
     }
 
-    // Actualizar el número
-    if (ratingNumber) {
-      ratingNumber.textContent = rating.toFixed(1);
-    }
-  }
-
-  // Ejecutar cuando el DOM esté listo
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeRating);
-  } else {
     initializeRating();
-  }
+  });
 
   // Ejecutar después de un breve retraso como respaldo
-  setTimeout(initializeRating, 500);
+  setTimeout(function () {
+    if (!document.querySelector('.stars-inner').style.width) {
+      initializeRating();
+    }
+  }, 100);
 </script>
 
 <div
