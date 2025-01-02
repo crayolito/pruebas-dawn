@@ -24,11 +24,10 @@
 {%- endif -%}
 
 {%- style -%}
-    #Banner-{{ section.id }}::after {
-      opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
-    }
-
-    .stars-container {
+      #Banner-{{ section.id }}::after {
+        opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+      }
+      .stars-container {
     display: inline-flex;
     align-items: center;
     position: relative;
@@ -38,13 +37,11 @@
     position: relative;
     display: inline-block;
     font-size: 24px;
-    font-family: "Font Awesome 5 Free" !important;
+    line-height: 1;
   }
 
   .stars-outer::before {
-    content: "\f005 \f005 \f005 \f005 \f005";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
+    content: "★★★★★";
     color: #ccc;
     letter-spacing: 3px;
   }
@@ -56,15 +53,17 @@
     white-space: nowrap;
     overflow: hidden;
     width: 0;
-    display: flex;
   }
 
   .stars-inner::before {
-    content: "\f005 \f005 \f005 \f005 \f005";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
+    content: "★★★★★";
     color: #FFD700;
     letter-spacing: 3px;
+  }
+
+  .rating-number {
+    margin-left: 10px;
+    font-size: 18px;
   }
 {%- endstyle -%}
 
@@ -92,27 +91,22 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    function setRating() {
-      const rating = 4.3;
-      const starTotal = 5;
+    const rating = 4.3;
+    const starTotal = 5;
 
-      const starPercentage = (rating / starTotal) * 100;
-      const starPercentageRounded = `${Math.round(starPercentage)}%`;
+    const starPercentage = (rating / starTotal) * 100;
+    const starPercentageRounded = `${Math.round(starPercentage)}%`;
 
-      const starsInner = document.querySelector('.stars-inner');
-      const ratingNumber = document.querySelector('.rating-number');
+    const starsInner = document.querySelector('.stars-inner');
+    const ratingNumber = document.querySelector('.rating-number');
 
-      if (starsInner) {
-        console.log('Setting width to:', starPercentageRounded); // Para debug
-        starsInner.style.width = starPercentageRounded;
-      }
-
-      if (ratingNumber) {
-        ratingNumber.textContent = rating.toFixed(1);
-      }
+    if (starsInner) {
+      starsInner.style.width = starPercentageRounded;
     }
 
-    setTimeout(setRating, 100);
+    if (ratingNumber) {
+      ratingNumber.textContent = rating.toFixed(1);
+    }
   });
 </script>
 
