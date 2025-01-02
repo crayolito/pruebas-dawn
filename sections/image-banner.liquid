@@ -2,30 +2,92 @@
 
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
   {%- style -%}
-    @media screen and (max-width: 749px) {
-      #Banner-{{ section.id }}::before,
-      #Banner-{{ section.id }} .banner__media::before,
-      #Banner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
-        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
-        content: '';
-        display: block;
+      @media screen and (max-width: 749px) {
+        #Banner-{{ section.id }}::before,
+        #Banner-{{ section.id }} .banner__media::before,
+        #Banner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
+          padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+          content: '';
+          display: block;
+        }
       }
-    }
 
-    @media screen and (min-width: 750px) {
-      #Banner-{{ section.id }}::before,
-      #Banner-{{ section.id }} .banner__media::before {
-        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
-        content: '';
-        display: block;
+      @media screen and (min-width: 750px) {
+        #Banner-{{ section.id }}::before,
+        #Banner-{{ section.id }} .banner__media::before {
+          padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+          content: '';
+          display: block;
+        }
       }
+
+      .stars-inner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0;
+      }
+
+    .stars-inner::before {
+      content: "\f005 \f005 \f005 \f005 \f005";
+      color: #f8ce0b;
     }
   {%- endstyle -%}
 {%- endif -%}
 
 {%- style -%}
-  #Banner-{{ section.id }}::after {
-    opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+    #Banner-{{ section.id }}::after {
+      opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+    }
+
+
+    .banner__rating {
+    margin-bottom: 1rem;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+  }
+
+  .stars-container {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+
+  .stars-outer {
+    position: relative;
+    display: inline-block;
+  }
+
+  .stars-outer::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #ccc;
+  }
+
+  .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+  }
+
+  .stars-inner::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #f8ce0b;
+  }
+
+  .rating-number {
+    margin-left: 0.5rem;
+    color: #333;
+    font-weight: 600;
   }
 {%- endstyle -%}
 
@@ -50,6 +112,18 @@
     assign fetch_priority = 'high'
   endif
 -%}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const rating = 4.3; // Puedes cambiar este valor según necesites
+    const starTotal = 5;
+
+    const starPercentage = (rating / starTotal) * 100;
+    const starPercentageRounded = `${Math.round(starPercentage)}%`;
+
+    document.querySelector('.stars-inner').style.width = starPercentageRounded;
+  });
+</script>
 
 <div
   id="Banner-{{ section.id }}"
@@ -117,6 +191,16 @@
   {%- endif -%}
   <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
+      <!-- Agregar el rating antes de los bloques -->
+      <div class="banner__rating">
+        <div class="stars-container">
+          <div class="stars-outer">
+            <div class="stars-inner"></div>
+          </div>
+          <span class="rating-number">4.3</span>
+        </div>
+      </div>
+
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
