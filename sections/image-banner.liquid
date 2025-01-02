@@ -101,25 +101,26 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     function setRating() {
-      const rating = 4.3;
-      const starTotal = 5;
+      const rating = 4.3; // Este es el valor del rating
+      const starTotal = 5; // Total de estrellas posibles
 
+      // Calcula el porcentaje basado en el rating (4.3 de 5 = 86%)
       const starPercentage = (rating / starTotal) * 100;
       const starPercentageRounded = `${Math.round(starPercentage)}%`;
 
+      // Encuentra el elemento .stars-inner y ajusta su ancho
       const starsInner = document.querySelector('.stars-inner');
       const ratingNumber = document.querySelector('.rating-number');
 
       if (starsInner) {
-        starsInner.style.width = starPercentageRounded;
+        starsInner.style.width = starPercentageRounded; // Esto "pinta" las estrellas ajustando el ancho
       }
 
       if (ratingNumber) {
-        ratingNumber.textContent = rating.toFixed(1);
+        ratingNumber.textContent = rating.toFixed(1); // Muestra el número 4.3
       }
     }
 
-    // Llamar a la función después de un pequeño retraso para asegurar que los elementos existan
     setTimeout(setRating, 100);
   });
 </script>
