@@ -69,7 +69,13 @@
   }
 
   .collection__title.custom-alingment {
-    justify-content: {{ title_alignment_title }}
+    display: flex;
+    justify-content: {{ title_alignment_title }};
+    width: 100%;
+  }
+
+  .collection__title.custom-alingment .title {
+    display: block;
   }
 {%- endstyle -%}
 
