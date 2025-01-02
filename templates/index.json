@@ -56,6 +56,63 @@
         "show_text_below": false
       }
     },
+    "steps_7faiwh": {
+      "type": "steps",
+      "blocks": {
+        "column_rcbrFT": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9025885_shopping_cart_icon_ece14e92-453a-4fb2-b95b-2746e67e8e9e.png",
+            "title": "Step 1",
+            "text": "<p>Vincula un texto con una imagen para atraer la atención hacia tu producto, colección o artículo de blog seleccionados. Agrega detalles sobre disponibilidad y estilo, o incluso ofrece una reseña.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_dU8LdU": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9113497_shipping_fast_solid_icon_7e2a5fec-7302-44f6-8b7c-67a96ffc325c.png",
+            "title": "Step 2",
+            "text": "<p>Vincula un texto con una imagen para atraer la atención hacia tu producto, colección o artículo de blog seleccionados. Agrega detalles sobre disponibilidad y estilo, o incluso ofrece una reseña.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_a6reqc": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9165484_happy_emoji_face_icon_42110060-052b-4605-8456-f66344345d1a.png",
+            "title": "Step 3",
+            "text": "<p>Vincula un texto con una imagen para atraer la atención hacia tu producto, colección o artículo de blog seleccionados. Agrega detalles sobre disponibilidad y estilo, o incluso ofrece una reseña.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_rcbrFT",
+        "column_dU8LdU",
+        "column_a6reqc"
+      ],
+      "settings": {
+        "title": "The Transformation",
+        "column_alignment_title": "left",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "rich_text": {
       "type": "rich-text",
       "blocks": {
@@ -77,6 +134,7 @@
         "heading",
         "text"
       ],
+      "disabled": true,
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -89,13 +147,14 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
+        "title": "Our  Best Sellers",
+        "column_alignment_title": "left",
+        "heading_size": "h1",
         "description": "",
         "show_description": false,
         "description_style": "body",
         "collection": "all",
-        "products_to_show": 8,
+        "products_to_show": 4,
         "columns_desktop": 4,
         "full_width": false,
         "show_view_all": false,
@@ -166,70 +225,14 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "steps_7faiwh": {
-      "type": "steps",
-      "blocks": {
-        "column_rcbrFT": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/9025885_shopping_cart_icon_ece14e92-453a-4fb2-b95b-2746e67e8e9e.png",
-            "title": "Step 1",
-            "text": "<p>Vincula un texto con una imagen para atraer la atención hacia tu producto, colección o artículo de blog seleccionados. Agrega detalles sobre disponibilidad y estilo, o incluso ofrece una reseña.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_dU8LdU": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/9113497_shipping_fast_solid_icon_7e2a5fec-7302-44f6-8b7c-67a96ffc325c.png",
-            "title": "Step 2",
-            "text": "<p>Vincula un texto con una imagen para atraer la atención hacia tu producto, colección o artículo de blog seleccionados. Agrega detalles sobre disponibilidad y estilo, o incluso ofrece una reseña.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_a6reqc": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/9165484_happy_emoji_face_icon_42110060-052b-4605-8456-f66344345d1a.png",
-            "title": "Step 3",
-            "text": "<p>Vincula un texto con una imagen para atraer la atención hacia tu producto, colección o artículo de blog seleccionados. Agrega detalles sobre disponibilidad y estilo, o incluso ofrece una reseña.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_rcbrFT",
-        "column_dU8LdU",
-        "column_a6reqc"
-      ],
-      "settings": {
-        "title": "The Transformation",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "button_label": "",
-        "button_link": "",
-        "color_scheme": "",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
     }
   },
   "order": [
     "image_banner",
+    "steps_7faiwh",
     "rich_text",
     "featured_collection",
     "collage",
-    "video",
-    "steps_7faiwh"
+    "video"
   ]
 }
