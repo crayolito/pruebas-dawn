@@ -24,11 +24,11 @@
 {%- endif -%}
 
 {%- style -%}
-        #Banner-{{ section.id }}::after {
-          opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
-        }
+          #Banner-{{ section.id }}::after {
+            opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+          }
 
-        .banner__rating {
+          .banner__rating {
     margin-bottom: 1rem;
   }
 
@@ -41,12 +41,15 @@
   .stars-outer {
     position: relative;
     display: inline-block;
+    width: 120px; /* Ancho fijo para contener exactamente 5 estrellas */
   }
 
   .stars-outer::before {
     content: "☆☆☆☆☆";
     font-size: 24px;
     color: #ccc;
+    position: absolute;
+    left: 0;
   }
 
   .stars-inner {
@@ -54,6 +57,7 @@
     top: 0;
     left: 0;
     overflow: hidden;
+    white-space: nowrap;
     width: 0;
   }
 
@@ -61,6 +65,11 @@
     content: "★★★★★";
     font-size: 24px;
     color: #FFD700;
+  }
+
+  .rating-number {
+    font-size: 18px;
+    margin-left: 8px;
   }
 {%- endstyle -%}
 
