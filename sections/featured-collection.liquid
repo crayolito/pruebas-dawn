@@ -37,7 +37,7 @@
     }
   }
 
-  .title-wrapper-with-link.custom-alingment {
+  .collection__description.custom-alingment {
     justify-content: {{ title_alignment_title }}
   }
 {%- endstyle -%}
@@ -91,7 +91,7 @@
         or section.settings.show_description
         and section.settings.collection.description != empty
       -%}
-        <div class="custom-alingment collection__description {{ section.settings.description_style }} rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <div class="collection__description custom-alingment {{ section.settings.description_style }} rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {%- if section.settings.show_description -%}
             {{ section.settings.collection.description }}
           {%- else -%}
