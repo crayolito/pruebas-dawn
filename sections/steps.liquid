@@ -2,7 +2,7 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign title_alignment_title = 'flex-start'
+  assign column_alignment_title = 'left'
   assign columns_mobile_int = section.settings.columns_mobile | plus: 0
   assign show_mobile_slider = false
   if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
@@ -11,11 +11,11 @@
 
   case section.settings.column_alignment_title
     when 'center'
-      assign title_alignment_title = 'center'
+      assign column_alignment_title = 'center'
     when 'right'
-      assign title_alignment_title = 'flex-end'
+      assign column_alignment_title = 'right'
     when 'left'
-      assign title_alignment_title = 'flex-start'
+      assign column_alignment_title = 'left'
   endcase
 -%}
 
@@ -32,8 +32,8 @@
     }
   }
 
-   .title-wrapper-with-link.custom-alingment {
-    justify-content: {{ title_alignment_title }}
+  .title.inline-richtext {
+    text-align: {{ column_alignment_title }};
   }
 {%- endstyle -%}
 
