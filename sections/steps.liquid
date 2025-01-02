@@ -84,7 +84,7 @@
                   <div
                     class="media media--transparent media--{{ section.settings.image_ratio }}"
                     {% if section.settings.image_ratio == 'adapt' %}
-                      style="padding-bottom: {{ 1 | divided_by: highest_ratio | times: 100 }}%;"
+                      style="padding-bottom: {{ 1 | divided_by: highest_ratio | times: 20 }}%;"
                     {% endif %}
                   >
                     {%- liquid
@@ -96,7 +96,7 @@
                       if section.settings.image_width == 'half'
                         assign image_width = 0.5
                       elsif section.settings.image_width == 'third'
-                        assign image_width = 0.10
+                        assign image_width = 0.33
                       else
                         assign image_width = 1
                       endif
