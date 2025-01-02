@@ -2,21 +2,11 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign column_alignment_title = 'left'
   assign columns_mobile_int = section.settings.columns_mobile | plus: 0
   assign show_mobile_slider = false
   if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
     assign show_mobile_slider = true
   endif
-
-  case section.settings.column_alignment_title
-    when 'center'
-      assign column_alignment_title = 'center'
-    when 'right'
-      assign column_alignment_title = 'right'
-    when 'left'
-      assign column_alignment_title = 'left'
-  endcase
 -%}
 
 {%- style -%}
@@ -31,12 +21,6 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
-  .title-wrapper-with-link {
-    display: flex;
-    justify-content: {{ column_alignment_title }};
-    width: 100%;
-  }
 {%- endstyle -%}
 
 <div class="multicolumn color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">
@@ -47,7 +31,7 @@
     {% endif %}
   >
     {%- unless section.settings.title == blank -%}
-      <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title">
+      <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title text-{{ section.settings.column_alignment_title }}">
         <h2 class="title inline-richtext {{ section.settings.heading_size }}">
           {{ section.settings.title }}
         </h2>
