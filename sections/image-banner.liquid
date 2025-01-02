@@ -38,12 +38,11 @@
 {%- endif -%}
 
 {%- style -%}
-    #Banner-{{ section.id }}::after {
-      opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
-    }
+  #Banner-{{ section.id }}::after {
+    opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+  }
 
-
-    .banner__rating {
+  .banner__rating {
     margin-bottom: 1rem;
     text-align: left;
     z-index: 2;
@@ -51,14 +50,15 @@
   }
 
   .stars-container {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     position: relative;
-    margin-bottom: 0.5rem;
   }
 
   .stars-outer {
     position: relative;
     display: inline-block;
+    font-size: 24px; /* Añadido tamaño de fuente */
   }
 
   .stars-outer::before {
@@ -81,13 +81,14 @@
     content: "\f005 \f005 \f005 \f005 \f005";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
-    color: #FFD700; /* Amarillo dorado */
+    color: #FFD700;
   }
 
   .rating-number {
     margin-left: 0.5rem;
     color: #333;
     font-weight: 600;
+    font-size: 20px; /* Añadido tamaño de fuente */
   }
 {%- endstyle -%}
 
@@ -115,13 +116,27 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const rating = 4.3; // Puedes cambiar este valor según necesites
-    const starTotal = 5;
+    function setRating() {
+      const rating = 4.3;
+      const starTotal = 5;
 
-    const starPercentage = (rating / starTotal) * 100;
-    const starPercentageRounded = `${Math.round(starPercentage)}%`;
+      const starPercentage = (rating / starTotal) * 100;
+      const starPercentageRounded = `${Math.round(starPercentage)}%`;
 
-    document.querySelector('.stars-inner').style.width = starPercentageRounded;
+      const starsInner = document.querySelector('.stars-inner');
+      const ratingNumber = document.querySelector('.rating-number');
+
+      if (starsInner) {
+        starsInner.style.width = starPercentageRounded;
+      }
+
+      if (ratingNumber) {
+        ratingNumber.textContent = rating.toFixed(1);
+      }
+    }
+
+    // Llamar a la función después de un pequeño retraso para asegurar que los elementos existan
+    setTimeout(setRating, 100);
   });
 </script>
 
