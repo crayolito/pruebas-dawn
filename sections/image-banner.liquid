@@ -24,18 +24,11 @@
 {%- endif -%}
 
 {%- style -%}
-  #Banner-{{ section.id }}::after {
-    opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
-  }
+    #Banner-{{ section.id }}::after {
+      opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+    }
 
-  .banner__rating {
-    margin-bottom: 1rem;
-    text-align: left;
-    z-index: 2;
-    position: relative;
-  }
-
-  .stars-container {
+    .stars-container {
     display: inline-flex;
     align-items: center;
     position: relative;
@@ -45,12 +38,15 @@
     position: relative;
     display: inline-block;
     font-size: 24px;
+    font-family: "Font Awesome 5 Free" !important;
   }
 
   .stars-outer::before {
-    content: "★★★★★";
-    font-family: Arial, sans-serif;
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
     color: #ccc;
+    letter-spacing: 3px;
   }
 
   .stars-inner {
@@ -60,19 +56,15 @@
     white-space: nowrap;
     overflow: hidden;
     width: 0;
+    display: flex;
   }
 
   .stars-inner::before {
-    content: "★★★★★";
-    font-family: Arial, sans-serif;
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
     color: #FFD700;
-  }
-
-  .rating-number {
-    margin-left: 0.5rem;
-    color: #333;
-    font-weight: 600;
-    font-size: 20px;
+    letter-spacing: 3px;
   }
 {%- endstyle -%}
 
@@ -101,23 +93,22 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     function setRating() {
-      const rating = 4.3; // Este es el valor del rating
-      const starTotal = 5; // Total de estrellas posibles
+      const rating = 4.3;
+      const starTotal = 5;
 
-      // Calcula el porcentaje basado en el rating (4.3 de 5 = 86%)
       const starPercentage = (rating / starTotal) * 100;
       const starPercentageRounded = `${Math.round(starPercentage)}%`;
 
-      // Encuentra el elemento .stars-inner y ajusta su ancho
       const starsInner = document.querySelector('.stars-inner');
       const ratingNumber = document.querySelector('.rating-number');
 
       if (starsInner) {
-        starsInner.style.width = starPercentageRounded; // Esto "pinta" las estrellas ajustando el ancho
+        console.log('Setting width to:', starPercentageRounded); // Para debug
+        starsInner.style.width = starPercentageRounded;
       }
 
       if (ratingNumber) {
-        ratingNumber.textContent = rating.toFixed(1); // Muestra el número 4.3
+        ratingNumber.textContent = rating.toFixed(1);
       }
     }
 
