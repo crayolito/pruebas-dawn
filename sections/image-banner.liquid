@@ -117,15 +117,26 @@
   {%- endif -%}
   <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
+      {%- if section.settings.show_rating -%}
+        <div class="stars-outer">
+          <div class="stars-inner">&nbsp;</div>
+        </div>
+        {{ section.settings.rating_value -}}
+        {{- section.settings.rating_text }}
+        {% render 'star-rating', ratingValue: section.settings.rating_value %}
+      {%- endif -%}
+
       {%- for block in section.blocks -%}
         {%- case block.type -%}
-          {%- when 'star' -%}
-            <div class="stars-outer">
-              <div class="stars-inner">&nbsp;</div>
-            </div>
-            {{ block.settings.reviews -}}
-            {{- block.settings.text }}
-            {% render 'star-rating', ratingValue: block.settings.reviews %}
+            {% comment %}
+              {%- when 'star' -%}
+              <div class="stars-outer">
+                <div class="stars-inner">&nbsp;</div>
+              </div>
+              {{ block.settings.reviews -}}
+              {{- block.settings.text }}
+              {% render 'star-rating', ratingValue: block.settings.reviews %}
+            {% endcomment %}
           {%- when 'heading' -%}
             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
@@ -448,6 +459,17 @@
       "name": "Star Ratings",
       "limit": 1,
       "settings": [
+        {
+          "type": "header",
+          "content": "Sistema de calificación"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Mostrar calificación",
+          "default": true,
+          "info": "Activa o desactiva la calificación en estrellas"
+        },
         {
           "type": "range",
           "id": "reviews",
