@@ -41,7 +41,7 @@
           "type": "star",
           "settings": {
             "show_rating": true,
-            "reviews": 2,
+            "reviews": 3,
             "text": "/5 based  on 6,347 reviews"
           }
         }
@@ -182,6 +182,73 @@
         "padding_bottom": 36
       }
     },
+    "multicolumn_ncJAb4": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_GafGx6": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9025885_shopping_cart_icon_ece14e92-453a-4fb2-b95b-2746e67e8e9e.png",
+            "title": "Columna",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_ihc6fh": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9025885_shopping_cart_icon_ece14e92-453a-4fb2-b95b-2746e67e8e9e.png",
+            "title": "Columna",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_qgadeH": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9025885_shopping_cart_icon_ece14e92-453a-4fb2-b95b-2746e67e8e9e.png",
+            "title": "Columna",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_34bKC4": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9025885_shopping_cart_icon_ece14e92-453a-4fb2-b95b-2746e67e8e9e.png",
+            "title": "Columna",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_GafGx6",
+        "column_ihc6fh",
+        "column_qgadeH",
+        "column_34bKC4"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 4,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "collage": {
       "type": "collage",
       "blocks": {
@@ -241,6 +308,7 @@
     "steps_7faiwh",
     "rich_text",
     "featured_collection",
+    "multicolumn_ncJAb4",
     "collage",
     "video"
   ]
