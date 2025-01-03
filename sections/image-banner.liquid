@@ -117,12 +117,15 @@
   {%- endif -%}
   <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
-      <div class="stars-outer">
-        <div class="stars-inner">&nbsp</div>
-      </div>
-
       {%- for block in section.blocks -%}
         {%- case block.type -%}
+          {%- when 'star' -%}
+            <div class="stars-outer">
+              <div class="stars-inner"></div>
+            </div>
+            {{ block.settings.reviews -}}
+            {{- block.settings.text }}
+            {% render 'star-rating', ratingValue: block.settings.reviews %}
           {%- when 'heading' -%}
             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
@@ -446,30 +449,20 @@
       "limit": 1,
       "settings": [
         {
-          "type": "richtext",
-          "id": "text",
-          "default": "<p>Cuenta la historia de tu marca a través de imágenes</p>",
-          "label": "t:sections.image-banner.blocks.text.settings.text.label"
+          "type": "range",
+          "id": "reviews",
+          "min": 0,
+          "max": 5,
+          "step": 0.1,
+          "unit": "stars",
+          "label": "Give Star Rating",
+          "default": 2.1
         },
         {
-          "type": "select",
-          "id": "text_style",
-          "options": [
-            {
-              "value": "body",
-              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__1.label"
-            },
-            {
-              "value": "subtitle",
-              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__2.label"
-            },
-            {
-              "value": "caption-with-letter-spacing",
-              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__3.label"
-            }
-          ],
-          "default": "body",
-          "label": "t:sections.image-banner.blocks.text.settings.text_style.label"
+          "type": "text",
+          "id": "text",
+          "default": "<p>Give customers details about the banner image(s) or content on the template</p>.",
+          "label": "Give Star Rating"
         }
       ]
     },
