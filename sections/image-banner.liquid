@@ -118,13 +118,14 @@
   <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
       {%- for block in section.blocks -%}
-      {%- when 'star' -%}
-        <div class="stars-outer">
-          <div class="stars-inner">&nbsp;</div>
-        </div>
-        {{ block.settings.reviews -}}
-        {{- block.settings.text }}
-        {% render 'star-rating', ratingValue: block.settings.reviews %}
+        {%- if block.type == 'star' -%}
+          <div class="stars-outer" {{ block.shopify_attributes }}>
+            <div class="stars-inner">&nbsp;</div>
+          </div>
+          {{ block.settings.reviews -}}
+          {{- block.settings.text }}
+          {% render 'star-rating', ratingValue: block.settings.reviews %}
+        {%- endif -%}
       {%- endfor -%}
 
       {%- for block in section.blocks -%}
