@@ -120,14 +120,12 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'star' -%}
-            <div class="banner__rating" {{ block.shopify_attributes }}>
-              {% render 'star-rating', ratingValue: block.settings.reviews %}
-              {%- if block.settings.text != blank -%}
-                <div class="rating-description">
-                  {{ block.settings.text }}
-                </div>
-              {%- endif -%}
+            <div class="stars-outer">
+              <div class="stars-inner"></div>
             </div>
+            {{ block.settings.reviews -}}
+            {{- block.settings.text }}
+            {% render 'star-rating', ratingValue: block.settings.reviews %}
           {%- when 'heading' -%}
             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
