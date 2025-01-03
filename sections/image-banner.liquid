@@ -51,46 +51,6 @@
   endif
 -%}
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<style>
-  .stars-outer::before {
-    content: '\f006 \f006 \f006 \f006 \f006';
-    color: #f8ce0b;
-  }
-
-  .stars-outer {
-    display: inline-block;
-    position: relative;
-    font-family: FontAwesome;
-  }
-
-  .stars-inner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 0;
-  }
-
-  .stars-inner::before {
-    content: '\f005 \f005 \f005 \f005 \f005';
-    color: #f8ce0b;
-  }
-</style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const ratings = 4.3;
-    const starTotal = 5;
-
-    const starPercentage = (ratings / starTotal) * 100;
-    const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
-    document.querySelector('.stars-inner').style.width = starPercentageRounded;
-  });
-</script>
-
 <div
   id="Banner-{{ section.id }}"
   class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
@@ -450,6 +410,39 @@
     {
       "type": "text",
       "name": "t:sections.image-banner.blocks.text.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Cuenta la historia de tu marca a través de imágenes</p>",
+          "label": "t:sections.image-banner.blocks.text.settings.text.label"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__1.label"
+            },
+            {
+              "value": "subtitle",
+              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__2.label"
+            },
+            {
+              "value": "caption-with-letter-spacing",
+              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__3.label"
+            }
+          ],
+          "default": "body",
+          "label": "t:sections.image-banner.blocks.text.settings.text_style.label"
+        }
+      ]
+    },
+    {
+      "type": "star",
+      "name": "star Ratings",
       "limit": 1,
       "settings": [
         {
