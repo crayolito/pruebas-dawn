@@ -13,6 +13,11 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .multicolumn-card__info.shipping__bar {
+    position: relative;
+    margin-left: 16px
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -115,7 +120,7 @@
                         sizes: sizes,
                         class: 'multicolumn-card__image'
                     }}
-                    <div class="multicolumn-card__info">
+                    <div class="multicolumn-card__info shipping__bar">
                       {%- if block.settings.title != blank -%}
                         <h3 class="inline-richtext">{{ block.settings.title }}</h3>
                       {%- endif -%}
