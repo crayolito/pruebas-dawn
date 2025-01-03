@@ -8,6 +8,7 @@
     display: inline-block;
     position: relative;
     font-family: FontAwesome;
+    margin: 0 10px; /* Agregado margen */
   }
 
   .stars-inner {
@@ -23,13 +24,29 @@
     content: '\f005 \f005 \f005 \f005 \f005';
     color: #f8ce0b;
   }
+
+  /* Nuevo estilo para el contenedor */
+  .rating-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre elementos */
+    margin-bottom: 10px; /* Espacio inferior */
+  }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const ratings = {{ratingValue}};
-    const starTotal = 5;
+<div class="rating-container">
+  <span class="rating-number">{{ ratingValue }}</span>
+  <div class="stars-outer">
+    <div class="stars-inner">&nbsp;</div>
+  </div>
+  <span class="rating-text">{{ text }}</span>
+</div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const ratings = {{ ratingValue | json }};  // Usar json filter
+    const starTotal = 5;
+    
     const starPercentage = (ratings / starTotal) * 100;
     const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
     document.querySelector('.stars-inner').style.width = starPercentageRounded;

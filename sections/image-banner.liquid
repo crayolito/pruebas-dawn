@@ -120,12 +120,9 @@
       {%- for block in section.blocks -%}
         {%- if block.type == 'star' -%}
           {%- if block.settings.show_rating -%}
-            <div class="stars-outer" {{ block.shopify_attributes }}>
-              <div class="stars-inner">&nbsp;</div>
+            <div class="rating-section" {{ block.shopify_attributes }}>
+              {% render 'star-rating', ratingValue: block.settings.reviews, text: block.settings.text %}
             </div>
-            {{ block.settings.reviews -}}
-            {{ block.settings.text }}
-            {% render 'star-rating', ratingValue: block.settings.reviews %}
           {%- endif -%}
         {%- endif -%}
       {%- endfor -%}
