@@ -2,8 +2,8 @@
   class="logoList--container page-width"
   style="padding-top: {{ section.settings.padding_top | append: "px" }}; padding-bottom: {{ section.settings.padding_bottom | append: "px" }}"
 >
-  <h2 class="h1">{{ section.settings.title | escape }}</h2>
   <ul>
+    <h2 class="h1 logoList--item titles">{{ section.settings.title | escape }}</h2>
     {%- for block in section.blocks -%}
       <li class="logoList--item" {{ block.shopify_attributes }}>
         {%- if block.settings.link != blank -%}
@@ -30,9 +30,10 @@
 
    .logoList--container ul {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 1rem;
       justify-content: center;
+      align-items: center;
   }
 
     .logoList--item{
