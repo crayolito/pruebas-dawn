@@ -123,12 +123,8 @@
             <div class="stars-outer" {{ block.shopify_attributes }}>
               <div class="stars-inner">&nbsp;</div>
             </div>
-            {%- if block.settings.reviews != blank -%}
-              {{ block.settings.reviews -}}
-            {%- endif -%}
-            {%- if block.settings.text != blank -%}
-              {{- block.settings.text -}}
-            {%- endif -%}
+            {{ block.settings.reviews -}}
+            {{ block.settings.text }}
             {% render 'star-rating', ratingValue: block.settings.reviews %}
           {%- endif -%}
         {%- endif -%}
