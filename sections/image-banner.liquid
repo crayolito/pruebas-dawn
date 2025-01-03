@@ -86,10 +86,10 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const rating = 4.3;
+    const ratings = 4.3;
     const starTotal = 5;
 
-    const starPercentage = (ratings[rating] / starTotal) * 100;
+    const starPercentage = (ratings / starTotal) * 100;
     const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
     document.querySelector('.stars-inner').style.width = starPercentageRounded;
   });
