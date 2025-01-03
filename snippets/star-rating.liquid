@@ -8,7 +8,7 @@
     display: inline-block;
     position: relative;
     font-family: FontAwesome;
-    margin: 0 10px; /* Agregado margen */
+    margin: 0 10px;
   }
 
   .stars-inner {
@@ -25,12 +25,11 @@
     color: #f8ce0b;
   }
 
-  /* Nuevo estilo para el contenedor */
   .rating-container {
     display: flex;
     align-items: center;
-    gap: 10px; /* Espacio entre elementos */
-    margin-bottom: 10px; /* Espacio inferior */
+    gap: 10px;
+    margin-bottom: 10px;
   }
 </style>
 
@@ -44,7 +43,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const ratings = {{ ratingValue | json }};  // Usar json filter
+    const ratings = {{ ratingValue | default: 0 }};  // Cambiado aquí
     const starTotal = 5;
     
     const starPercentage = (ratings / starTotal) * 100;
