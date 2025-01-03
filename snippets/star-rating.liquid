@@ -2,12 +2,12 @@
 <style>
   .stars-outer::before {
     content: '\f006 \f006 \f006 \f006 \f006';
-    font-family: FontAwesome;
   }
 
   .stars-outer {
     display: inline-block;
     position: relative;
+    font-family: FontAwesome;
     margin: 0 10px;
   }
 
@@ -22,30 +22,9 @@
 
   .stars-inner::before {
     content: '\f005 \f005 \f005 \f005 \f005';
-    font-family: FontAwesome;
     color: #f8ce0b;
   }
-
-  .rating-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-
-  .rating-number {
-    font-size: 16px;
-    font-weight: bold;
-  }
 </style>
-
-<div class="rating-container" data-rating="{{ ratingValue }}">
-  <span class="rating-number">{{ ratingValue }}</span>
-  <div class="stars-outer">
-    <div class="stars-inner">&nbsp;</div>
-  </div>
-  <span class="rating-text">{{ text }}</span>
-</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
