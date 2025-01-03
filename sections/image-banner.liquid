@@ -122,9 +122,9 @@
           <div class="stars-outer">
             <div class="stars-inner">&nbsp;</div>
           </div>
-          {{ section.settings.rating_value -}}
-          {{- section.settings.rating_text }}
-          {% render 'star-rating', ratingValue: section.settings.rating_value %}
+          {{ section.settings.reviews -}}
+          {{- section.settings.text }}
+          {% render 'star-rating', ratingValue: section.settings.reviews %}
         {%- endif -%}
       {%- endfor -%}
 
