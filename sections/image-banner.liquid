@@ -24,59 +24,8 @@
 {%- endif -%}
 
 {%- style -%}
-            #Banner-{{ section.id }}::after {
-              opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
-            }
-
-            .banner__rating {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 1rem;
-  }
-
-  .stars-container {
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .stars-outer {
-    position: relative;
-    display: inline-block;
-    width: 120px; /* Ancho fijo para 5 estrellas */
-  }
-
-  .stars-outer::before {
-    content: "☆☆☆☆☆";
-    font-size: 24px;
-    color: #ccc;
-    letter-spacing: 0;
-    position: absolute;
-    left: 0;
-  }
-
-  .stars-inner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    width: 0;
-  }
-
-  .stars-inner::before {
-    content: "★★★★★";
-    font-size: 24px;
-    color: #FFD700;
-    letter-spacing: 0;
-  }
-
-  .rating-number {
-    font-size: 18px;
-    line-height: 1;
-    margin-left: 8px;
-    vertical-align: middle;
-    display: inline-block;
+  #Banner-{{ section.id }}::after {
+    opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
 {%- endstyle -%}
 
@@ -102,40 +51,48 @@
   endif
 -%}
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<style>
+  .stars-outer::before {
+    content: '\f006 \f006 \f006 \f006 \f006';
+    color: #f8ce0b;
+  }
+
+  .stars-outer {
+    display: inline-block;
+    position: relative;
+    font-family: FontAwesome;
+  }
+
+  .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+  }
+
+  .stars-inner::before {
+    content: '\f005 \f005 \f005 \f005 \f005';
+    color: #f8ce0b;
+  }
+</style>
+
+<div class="stars-outer">
+  <div class="stars-inner"></div>
+</div>
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    function initializeRating() {
-      const rating = 4.3;
-      const starTotal = 5;
+    const rating = 4.3;
+    const starTotal = 5;
 
-      // Calcular el porcentaje exacto
-      const starPercentage = (rating / starTotal) * 100;
-
-      // No redondeamos el porcentaje para mantener la precisión
-      const starWidth = `${starPercentage}%`;
-
-      const starsInner = document.querySelector('.stars-inner');
-      const ratingNumber = document.querySelector('.rating-number');
-
-      if (starsInner) {
-        starsInner.style.width = starWidth;
-        console.log('Width set to:', starWidth);
-      }
-
-      if (ratingNumber) {
-        ratingNumber.textContent = rating.toFixed(1);
-      }
-    }
-
-    initializeRating();
+    const starPercentage = (ratings[rating] / starTotal) * 100;
+    const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+    document.querySelector('.stars-inner').style.width = starPercentageRounded;
   });
-
-  // Ejecutar después de un breve retraso como respaldo
-  setTimeout(function () {
-    if (!document.querySelector('.stars-inner').style.width) {
-      initializeRating();
-    }
-  }, 100);
 </script>
 
 <div
