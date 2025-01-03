@@ -28,17 +28,11 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const container = document.querySelector('.rating-container');
-    if (!container) return;
+    const ratings = {{ ratingValue }}
 
-    const rating = parseFloat(container.dataset.rating) || 0;
     const starTotal = 5;
     const starPercentage = (rating / starTotal) * 100;
     const starPercentageRounded = Math.round(starPercentage / 10) * 10;
-
-    const starsInner = container.querySelector('.stars-inner');
-    if (starsInner) {
-      starsInner.style.width = starPercentageRounded + '%';
-    }
+    document.querySelector('.stars-inner').style.width = starPercentageRounded;
   });
 </script>
