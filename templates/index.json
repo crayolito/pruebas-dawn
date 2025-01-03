@@ -9,6 +9,73 @@
  */
 {
   "sections": {
+    "shipping_bar_trx6rH": {
+      "type": "shipping-bar",
+      "blocks": {
+        "column_9KxkkB": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9025885_shopping_cart_icon_ece14e92-453a-4fb2-b95b-2746e67e8e9e.png",
+            "title": "Columna",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_bGkTHj": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9025885_shopping_cart_icon_ece14e92-453a-4fb2-b95b-2746e67e8e9e.png",
+            "title": "Columna",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_H7QmWR": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9025885_shopping_cart_icon_ece14e92-453a-4fb2-b95b-2746e67e8e9e.png",
+            "title": "Columna",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_4TBqkh": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9025885_shopping_cart_icon_ece14e92-453a-4fb2-b95b-2746e67e8e9e.png",
+            "title": "Columna",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_9KxkkB",
+        "column_bGkTHj",
+        "column_H7QmWR",
+        "column_4TBqkh"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 4,
+        "column_alignment": "left",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -301,83 +368,16 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "shipping_bar_trx6rH": {
-      "type": "shipping-bar",
-      "blocks": {
-        "column_9KxkkB": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/9025885_shopping_cart_icon_ece14e92-453a-4fb2-b95b-2746e67e8e9e.png",
-            "title": "Columna",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_bGkTHj": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/9025885_shopping_cart_icon_ece14e92-453a-4fb2-b95b-2746e67e8e9e.png",
-            "title": "Columna",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_H7QmWR": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/9025885_shopping_cart_icon_ece14e92-453a-4fb2-b95b-2746e67e8e9e.png",
-            "title": "Columna",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_4TBqkh": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/9025885_shopping_cart_icon_ece14e92-453a-4fb2-b95b-2746e67e8e9e.png",
-            "title": "Columna",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_9KxkkB",
-        "column_bGkTHj",
-        "column_H7QmWR",
-        "column_4TBqkh"
-      ],
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "columns_desktop": 4,
-        "column_alignment": "left",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "color_scheme": "",
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 12,
-        "padding_bottom": 12
-      }
     }
   },
   "order": [
+    "shipping_bar_trx6rH",
     "image_banner",
     "steps_7faiwh",
     "rich_text",
     "featured_collection",
     "multicolumn_ncJAb4",
     "collage",
-    "video",
-    "shipping_bar_trx6rH"
+    "video"
   ]
 }
