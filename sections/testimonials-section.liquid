@@ -2,39 +2,23 @@
 <link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
 <noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
 {% style %}
-    .multicolumn {
-      padding: 35px 0px;
-      background: {{ section.settings.testimonial_section_background }};
-    }
-    .reviews {
+  .multicolumn {
+    padding: 35px 0px;
+    background: {{ section.settings.testimonial_section_background }};
+  }
+  .reviews {
     color: {{ section.settings.star_color }};
-    display: flex;
-    gap: 2px;  /* Espacio entre estrellas */
-    align-items: center;
-    margin: 10px 0;  /* Espacio arriba y abajo */
   }
-  .reviews i {
-    font-size: 18px;  /* Tamaño de las estrellas */
+  .multicolumn-card {
+    background: {{ section.settings.testimonial_background }};
+    padding: 20px;
+    box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
   }
-  .Testimonial__Content {
-    margin-top: 15px;  /* Espacio antes del contenedor de estrellas */
-  }
-
-  .multicolumn-card__info {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;  /* Espacio entre elementos */
-  }
-    .multicolumn-card {
-      background: {{ section.settings.testimonial_background }};
-      padding: 20px;
-      box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
+  @media only screen and (max-width: 800px) {
+    .multicolumn-list__item.slider__slide {
+      width: 90%;
     }
-    @media only screen and (max-width: 800px) {
-      .multicolumn-list__item.slider__slide {
-        width: 90%;
-      }
-    }
+  }
 {% endstyle %}
 <div class="multicolumn background-{{ section.settings.background_style }}{% if section.settings.title == blank %} no-heading{% endif %}">
   <div class="page-width">
@@ -114,35 +98,35 @@
                   <div class="Testimonial__Content">
                     <div class="reviews">
                       {% if block.settings.stars_count == '5' %}
-                        <i class="fa fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="fa fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                       {%- elsif block.settings.stars_count == '4.5' -%}
-                        <i class="fa fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
                       {%- elsif block.settings.stars_count == '4' -%}
-                        <i class="fa fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="fa fa-star-o"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
                       {%- elsif block.settings.stars_count == '3' -%}
-                        <i class="fa fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
                       {%- elsif block.settings.stars_count == '2' -%}
-                        <i class="fa fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
                       {%- endif -%}
                     </div>
                   </div>
