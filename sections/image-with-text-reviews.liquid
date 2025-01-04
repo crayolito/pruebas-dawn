@@ -98,17 +98,17 @@
                       {{ block.settings.button_label | escape }}
                     </a>
                   {%- endif -%}
+                {%- when 'star' -%}
+                  {% assign random_id = section.id | split: '_' | last %}
+                  <div class="stars-outer" id="reviews-{{ random_id }}">
+                    <div class="stars-inner">&nbsp;</div>
+                  </div>
+                  {{ block.settings.reviews -}}
+                  {{- block.settings.text }}
+                  {% render 'star-rating', ratingValue: block.settings.reviews, id: random_id %}
               {%- endcase -%}
             {%- endfor -%}
             {%- for block in section.blocks -%}
-            {%- when 'star' -%}
-              {% assign random_id = section.id | split: '_' | last %}
-              <div class="stars-outer" id="reviews-{{ random_id }}">
-                <div class="stars-inner">&nbsp;</div>
-              </div>
-              {{ block.settings.reviews }}
-              {{ block.settings.text }}
-              {% render 'star-rating', ratingValue: block.settings.reviews, id: random_id %}
             {%- endfor -%}
           </div>
         </div>
