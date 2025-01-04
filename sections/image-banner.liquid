@@ -119,12 +119,13 @@
     <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
       {%- for block in section.blocks -%}
         {%- if block.type == 'star' and block.settings.show_rating -%}
-          <div class="stars-outer">
+          {% assign random_id = section.id | split: '_' | last %}
+
+          <div class="stars-outer" id="reviews-{{ random_id }}">
             <div class="stars-inner">&nbsp;</div>
           </div>
           {{ block.settings.reviews }}
           {{ block.settings.text }}
-          {% assign random_id = section.id | split: '_' | last %}
           {% render 'star-rating', ratingValue: block.settings.reviews, id: random_id %}
         {%- endif -%}
       {%- endfor -%}
