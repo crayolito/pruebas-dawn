@@ -112,28 +112,31 @@
                   </div>
                 {%- when 'button' -%}
                   <div class="btn_with-reviews">
-                    {%- if block.settings.button_label != blank -%}
-                      <a
-                        {% if block.settings.button_link == blank %}
-                          role="link" aria-disabled="true"
-                        {% else %}
-                          href="{{ block.settings.button_link }}"
-                        {% endif %}
-                        class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
-                        {{ block.shopify_attributes }}
-                      >
-                        {{ block.settings.button_label | escape }}
-                      </a>
-                    {%- endif -%}
-                    {% assign random_id = section.id | split: '_' | last %}
-                      <div class="stars-outer" id="reviews-{{ random_id }}">
-                        <div class="stars-inner">&nbsp;</div>
-                      </div>
-                      <div class="rating-text">
-                        <span class="rating-value">{{ block.settings.reviews }}</span>
-                        <span class="rating-description">{{ block.settings.text }}</span>
-                      </div>
-                    {% render 'star-rating', ratingValue: block.settings.reviews, id: random_id %}
+            
+                  {%- if block.settings.button_label != blank -%}
+                    <a
+                      {% if block.settings.button_link == blank %}
+                        role="link" aria-disabled="true"
+                      {% else %}
+                        href="{{ block.settings.button_link }}"
+                      {% endif %}
+                      class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                      {{ block.shopify_attributes }}
+                    >
+                      {{ block.settings.button_label | escape }}
+                    </a>
+                  {%- endif -%}
+                  {% assign random_id = section.id | split: '_' | last %}
+                  <div class="rating-container">
+                    <div class="stars-outer" id="reviews-{{ random_id }}">
+                      <div class="stars-inner">&nbsp;</div>
+                    </div>
+                    <div class="rating-text">
+                      <span class="rating-value">{{ block.settings.reviews }}</span>
+                      <span class="rating-description">{{ block.settings.text }}</span>
+                    </div>
+                  </div>
+                  {% render 'star-rating', ratingValue: block.settings.reviews, id: random_id %}
                   </div>
               {%- endcase -%}
             {%- endfor -%}
