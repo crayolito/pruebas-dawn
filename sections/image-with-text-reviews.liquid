@@ -101,16 +101,14 @@
               {%- endcase -%}
             {%- endfor -%}
             {%- for block in section.blocks -%}
-              {% case block.type %}
-                {%- when 'star' -%}
-                  {% assign random_id = section.id | split: '_' | last %}
-                  <div class="stars-outer" id="reviews-{{ random_id }}">
-                    <div class="stars-inner">&nbsp;</div>
-                  </div>
-                  <span>{{ block.settings.reviews }}</span>
-                  <div>{{ block.settings.text }}</div>
-                  {% render 'star-rating', ratingValue: block.settings.reviews, id: random_id %}
-              {%- endcase -%}
+            {%- when 'star' -%}
+              {% assign random_id = section.id | split: '_' | last %}
+              <div class="stars-outer" id="reviews-{{ random_id }}">
+                <div class="stars-inner">&nbsp;</div>
+              </div>
+              {{ block.settings.reviews }}
+              {{ block.settings.text }}
+              {% render 'star-rating', ratingValue: block.settings.reviews, id: random_id %}
             {%- endfor -%}
           </div>
         </div>
