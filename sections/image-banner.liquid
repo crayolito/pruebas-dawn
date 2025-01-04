@@ -124,21 +124,13 @@
           </div>
           {{ block.settings.reviews }}
           {{ block.settings.text }}
-          {% render 'star-rating', ratingValue: block.settings.reviews %}
+          {% assign random_id = section.id | split: '_' | last %}
+          {% render 'star-rating', ratingValue: block.settings.reviews, id: random_id %}
         {%- endif -%}
       {%- endfor -%}
 
       {%- for block in section.blocks -%}
         {%- case block.type -%}
-            {% comment %}
-              {%- when 'star' -%}
-              <div class="stars-outer">
-                <div class="stars-inner">&nbsp;</div>
-              </div>
-              {{ block.settings.reviews -}}
-              {{- block.settings.text }}
-              {% render 'star-rating', ratingValue: block.settings.reviews %}
-            {% endcomment %}
           {%- when 'heading' -%}
             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"

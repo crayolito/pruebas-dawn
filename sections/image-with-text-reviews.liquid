@@ -101,12 +101,13 @@
 
                   {%- for block in section.blocks -%}
                     {%- if block.type == 'star' and block.settings.show_rating -%}
-                      <div class="stars-outer">
+                      <div class="stars-outer" id="reviews-{{ section.id }}">
                         <div class="stars-inner">&nbsp;</div>
                       </div>
+                      {% assign random_id = section.id | split: '_' | last %}
                       {{ block.settings.reviews }}
                       {{ block.settings.text }}
-                      {% render 'star-rating', ratingValue: block.settings.reviews %}
+                      {% render 'star-rating', ratingValue: block.settings.reviews, id: random_id %}
                     {%- endif -%}
                   {%- endfor -%}
               {%- endcase -%}
