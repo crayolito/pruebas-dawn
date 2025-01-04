@@ -2,23 +2,39 @@
 <link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
 <noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
 {% style %}
-  .multicolumn {
-    padding: 35px 0px;
-    background: {{ section.settings.testimonial_section_background }};
-  }
-  .reviews {
-    color: {{ section.settings.star_color }};
-  }
-  .multicolumn-card {
-    background: {{ section.settings.testimonial_background }};
-    padding: 20px;
-    box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
-  }
-  @media only screen and (max-width: 800px) {
-    .multicolumn-list__item.slider__slide {
-      width: 90%;
+    .multicolumn {
+      padding: 35px 0px;
+      background: {{ section.settings.testimonial_section_background }};
     }
+    .reviews {
+    color: {{ section.settings.star_color }};
+    display: flex;
+    gap: 2px;  /* Espacio entre estrellas */
+    align-items: center;
+    margin: 10px 0;  /* Espacio arriba y abajo */
   }
+  .reviews i {
+    font-size: 18px;  /* Tamaño de las estrellas */
+  }
+  .Testimonial__Content {
+    margin-top: 15px;  /* Espacio antes del contenedor de estrellas */
+  }
+
+  .multicolumn-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;  /* Espacio entre elementos */
+  }
+    .multicolumn-card {
+      background: {{ section.settings.testimonial_background }};
+      padding: 20px;
+      box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
+    }
+    @media only screen and (max-width: 800px) {
+      .multicolumn-list__item.slider__slide {
+        width: 90%;
+      }
+    }
 {% endstyle %}
 <div class="multicolumn background-{{ section.settings.background_style }}{% if section.settings.title == blank %} no-heading{% endif %}">
   <div class="page-width">
@@ -33,7 +49,8 @@
       {%- endif -%}
     </div>
     <slider-component class="slider-mobile-gutter">
-      <ul class="multicolumn-list grid grid--1-col{% if section.blocks.size > 3 and section.settings.image_width != 'full' %} grid--2-col-tablet grid--4-col-desktop{% elsif section.blocks.size > 3 and section.settings.image_width == 'full' %} grid--2-col-tablet{% else %} grid--3-col-tablet{% endif %}{% if section.settings.swipe_on_mobile and section.blocks.size > 1 %} slider slider--mobile grid--peek{% endif %}"
+      <ul
+        class="multicolumn-list grid grid--1-col{% if section.blocks.size > 3 and section.settings.image_width != 'full' %} grid--2-col-tablet grid--4-col-desktop{% elsif section.blocks.size > 3 and section.settings.image_width == 'full' %} grid--2-col-tablet{% else %} grid--3-col-tablet{% endif %}{% if section.settings.swipe_on_mobile and section.blocks.size > 1 %} slider slider--mobile grid--peek{% endif %}"
         id="Slider-{{ section.id }}"
         role="list"
       >
@@ -46,7 +63,11 @@
           endfor
         -%}
         {%- for block in section.blocks -%}
-          <li id="Slide-{{ section.id }}-{{ forloop.index }}" class="multicolumn-list__item grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}{{ empty_column }}" {{ block.shopify_attributes }}>
+          <li
+            id="Slide-{{ section.id }}-{{ forloop.index }}"
+            class="multicolumn-list__item grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}{{ empty_column }}"
+            {{ block.shopify_attributes }}
+          >
             <div class="multicolumn-card">
               {%- if block.settings.image != blank -%}
                 {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
@@ -54,19 +75,25 @@
                 {% endif %}
                 {% if block.settings.toggle_image == true %}
                   <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %}">
-                    <div class="media media--transparent media--{{ section.settings.image_ratio }}"
+                    <div
+                      class="media media--transparent media--{{ section.settings.image_ratio }}"
                       {% if section.settings.image_ratio == 'adapt' %}
                         style="padding-bottom: {{ 1 | divided_by: highest_ratio | times: 100 }}%;"
-                      {% endif %}>
+                      {% endif %}
+                    >
                       <img
-                        srcset="{%- if block.settings.image.width >= 275 -%}{{ block.settings.image | img_url: '275x' }} 275w,{%- endif -%}
+                        srcset="
+                          {%- if block.settings.image.width >= 275 -%}{{ block.settings.image | img_url: '275x' }} 275w,{%- endif -%}
                           {%- if block.settings.image.width >= 550 -%}{{ block.settings.image | img_url: '550x' }} 550w,{%- endif -%}
                           {%- if block.settings.image.width >= 710 -%}{{ block.settings.image | img_url: '710x' }} 710w,{%- endif -%}
-                          {%- if block.settings.image.width >= 1420 -%}{{ block.settings.image | img_url: '1420x' }} 1420w,{%- endif -%}"
+                          {%- if block.settings.image.width >= 1420 -%}{{ block.settings.image | img_url: '1420x' }} 1420w,{%- endif -%}
+                        "
                         src="{{ block.settings.image | img_url: '550x' }}"
-                        sizes="(min-width: 990px) {% if section.blocks.size <= 2 %}710px{% else %}550px{% endif %},
+                        sizes="
+                          (min-width: 990px) {% if section.blocks.size <= 2 %}710px{% else %}550px{% endif %},
                           (min-width: 750px) {% if section.blocks.size == 1 %}710px{% else %}550px{% endif %},
-                          calc(100vw - 30px)"
+                          calc(100vw - 30px)
+                        "
                         alt="{{ block.settings.image.alt }}"
                         height="{{ block.settings.image.height }}"
                         width="{{ block.settings.image.width }}"
@@ -84,41 +111,41 @@
                   <h3>{{ block.settings.title | escape }}</h3>
                 {%- endif -%}
                 {% if block.settings.toggle_review_stars == true %}
-                <div class="Testimonial__Content">
+                  <div class="Testimonial__Content">
                     <div class="reviews">
-                      {% if block.settings.stars_count == "5" %}
+                      {% if block.settings.stars_count == '5' %}
                         <i class="fa fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fas fa-star"></i>
-                      {%- elsif block.settings.stars_count == "4.5" -%}
+                      {%- elsif block.settings.stars_count == '4.5' -%}
                         <i class="fa fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half"></i>
-                      {%- elsif block.settings.stars_count == "4" -%}
+                      {%- elsif block.settings.stars_count == '4' -%}
                         <i class="fa fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fa fa-star-o"></i>
-                      {%- elsif block.settings.stars_count == "3" -%}
+                      {%- elsif block.settings.stars_count == '3' -%}
                         <i class="fa fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fa fa-star-o"></i>
                         <i class="fa fa-star-o"></i>
-                      {%- elsif block.settings.stars_count == "2" -%}
+                      {%- elsif block.settings.stars_count == '2' -%}
                         <i class="fa fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fa fa-star-o"></i>
                         <i class="fa fa-star-o"></i>
                         <i class="fa fa-star-o"></i>
                       {%- endif -%}
+                    </div>
                   </div>
-                </div>
                 {%- endif -%}
               </div>
             </div>
@@ -127,14 +154,28 @@
       </ul>
       {%- if section.settings.swipe_on_mobile -%}
         <div class="slider-buttons no-js-hidden medium-hide">
-          <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'general.slider.previous_slide' | t }}">{% render 'icon-caret' %}</button>
+          <button
+            type="button"
+            class="slider-button slider-button--prev"
+            name="previous"
+            aria-label="{{ 'general.slider.previous_slide' | t }}"
+          >
+            {% render 'icon-caret' %}
+          </button>
           <div class="slider-counter caption">
             <span class="slider-counter--current">1</span>
             <span aria-hidden="true"> / </span>
             <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
             <span class="slider-counter--total">{{ section.blocks.size }}</span>
           </div>
-          <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'general.slider.next_slide' | t }}">{% render 'icon-caret' %}</button>
+          <button
+            type="button"
+            class="slider-button slider-button--next"
+            name="next"
+            aria-label="{{ 'general.slider.next_slide' | t }}"
+          >
+            {% render 'icon-caret' %}
+          </button>
         </div>
       {%- endif -%}
     </slider-component>
@@ -363,4 +404,3 @@
   ]
 }
 {% endschema %}
- 
