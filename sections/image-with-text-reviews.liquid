@@ -14,14 +14,7 @@
     }
 
 
-  .stars-outer {
-    margin: 1.5rem 0;  /* Espacio arriba y abajo de las estrellas */
-  }
-
-  /* Espacio para el texto de reseñas */
-  #reviews-{{ section.id }} + div {
-    margin-top: 0.75rem;  /* Espacio después de las estrellas */
-  }
+ 
 {%- endstyle -%}
 
 {%- liquid
@@ -110,15 +103,11 @@
                   {%- endif -%}
                 {%- when 'star' -%}
                   {% assign random_id = section.id | split: '_' | last %}
-                  <div class="rating-container">
                     <div class="stars-outer" id="reviews-{{ random_id }}">
                       <div class="stars-inner">&nbsp;</div>
                     </div>
-                    <div class="rating-text">
                       {{ block.settings.reviews -}}
                       {{- block.settings.text }}
-                    </div>
-                  </div>
                   {% render 'star-rating', ratingValue: block.settings.reviews, id: random_id %}
               {%- endcase -%}
             {%- endfor -%}
