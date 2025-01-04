@@ -110,9 +110,8 @@
                   <div class="image-with-text__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
                     {{ block.settings.text }}
                   </div>
+                
                 {%- when 'button' -%}
-                  <div class="btn_with-reviews">
-            
                   {%- if block.settings.button_label != blank -%}
                     <a
                       {% if block.settings.button_link == blank %}
@@ -126,6 +125,7 @@
                       {{ block.settings.button_label | escape }}
                     </a>
                   {%- endif -%}
+                {%- when 'star' -%}
                   {% assign random_id = section.id | split: '_' | last %}
                   <div class="rating-container">
                     <div class="stars-outer" id="reviews-{{ random_id }}">
@@ -137,8 +137,8 @@
                     </div>
                   </div>
                   {% render 'star-rating', ratingValue: block.settings.reviews, id: random_id %}
-                  </div>
               {%- endcase -%}
+                      
             {%- endfor -%}
           </div>
         </div>
