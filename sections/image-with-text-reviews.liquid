@@ -1,16 +1,47 @@
 {{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+
+
+    .image-with-text__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;  /* Añade espacio uniforme entre todos los elementos hijos */
+    padding: 2rem;  /* Añade padding interno */
   }
 
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
+  .image-with-text__heading {
+    margin-bottom: 1.5rem;  /* Espacio después del título */
+  }
+
+  .image-with-text__text {
+    margin-bottom: 1.5rem;  /* Espacio después del texto */
+  }
+
+  /* Estilo para el contenedor de estrellas */
+  .stars-outer {
+    margin: 1.5rem 0;  /* Espacio arriba y abajo de las estrellas */
+  }
+
+  /* Estilo para el botón */
+  .button {
+    margin-top: 1.5rem;  /* Espacio antes del botón */
+  }
+
+  /* Espacio para el texto de reseñas */
+  #reviews-{{ section.id }} + div {
+    margin-top: 0.75rem;  /* Espacio después de las estrellas */
   }
 {%- endstyle -%}
 
@@ -100,15 +131,17 @@
                   {%- endif -%}
                 {%- when 'star' -%}
                   {% assign random_id = section.id | split: '_' | last %}
-                  <div class="stars-outer" id="reviews-{{ random_id }}">
-                    <div class="stars-inner">&nbsp;</div>
+                  <div class="rating-container">
+                    <div class="stars-outer" id="reviews-{{ random_id }}">
+                      <div class="stars-inner">&nbsp;</div>
+                    </div>
+                    <div class="rating-text">
+                      {{ block.settings.reviews -}}
+                      {{- block.settings.text }}
+                    </div>
                   </div>
-                  {{ block.settings.reviews -}}
-                  {{- block.settings.text }}
                   {% render 'star-rating', ratingValue: block.settings.reviews, id: random_id %}
               {%- endcase -%}
-            {%- endfor -%}
-            {%- for block in section.blocks -%}
             {%- endfor -%}
           </div>
         </div>
