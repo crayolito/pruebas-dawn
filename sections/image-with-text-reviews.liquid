@@ -13,8 +13,31 @@
       }
     }
 
+    .rating-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
+    align-items: flex-start;
+  }
 
- 
+  .stars-outer {
+    margin-bottom: 0.5rem;
+  }
+
+  .rating-text {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .image-with-text__content > * {
+    margin-bottom: 1.5rem;
+  }
+
+  .image-with-text__heading {
+    margin-bottom: 2rem;
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -103,11 +126,15 @@
                   {%- endif -%}
                 {%- when 'star' -%}
                   {% assign random_id = section.id | split: '_' | last %}
+                  <div class="rating-container">
                     <div class="stars-outer" id="reviews-{{ random_id }}">
                       <div class="stars-inner">&nbsp;</div>
                     </div>
-                      {{ block.settings.reviews -}}
-                      {{- block.settings.text }}
+                    <div class="rating-text">
+                      <span class="rating-value">{{ block.settings.reviews }}</span>
+                      <span class="rating-description">{{ block.settings.text }}</span>
+                    </div>
+                  </div>
                   {% render 'star-rating', ratingValue: block.settings.reviews, id: random_id %}
               {%- endcase -%}
             {%- endfor -%}
